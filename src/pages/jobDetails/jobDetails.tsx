@@ -5,7 +5,7 @@ import { FaCalendar, FaClock } from 'react-icons/fa'
 
 function JobDetails() {
   const { id } = useParams()
-  const { data, isSuccess } = useJobDetails(`${id}`, true)
+  const { data } = useJobDetails(`${id}`, true)
 
   const horarioInicio = data?.eventStartDateHour.match(/T(.{5})/)?.[1]
   const horarioFim = data?.eventFinishDateHour.match(/T(.{5})/)?.[1]

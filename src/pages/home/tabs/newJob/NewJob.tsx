@@ -98,7 +98,6 @@ const NewJob = () => {
     if (womens != null && mens != null && both != null) {
       const people = new People(womens, mens, both)
 
-      console.log(people)
       setForms((prevState) => ({
         ...prevState,
         people,
@@ -134,8 +133,6 @@ const NewJob = () => {
         sapatosRapazes,
         sapatosRaparigas,
       )
-
-      console.log(peopleWear)
 
       setForms((prevState) => ({
         ...prevState,
