@@ -1,0 +1,73 @@
+.card-contaianer {
+  color: #606060;
+  display: flex;
+  align-items: center;
+
+  padding: 10px;
+
+  min-width: 730px;
+  height: 100px;
+
+  background-color: #ffffff;
+
+  .card-company-data {
+    margin-left: 20px;
+    width: 150px;
+
+    .company-data-title {
+      font-weight: 500;
+      font-size: 20px;
+    }
+
+    .company-data-subtitle {
+      font-weight: 400;
+      font-size: 12px;
+      color: #5c5c5c;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .card-job {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px;
+
+    .card-job-function {
+      display: flex;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .card-job-employee {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .tag-rounded {
+        border-radius: 150px;
+      }
+
+      .icon-color {
+        color: #ffffff;
+        margin-right: 5px;
+      }
+
+      .card-job-employee-created {
+        margin-left: 60px;
+        font-weight: 400;
+        color: #948f8f;
+        font-size: 11px;
+      }
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,97 @@
+.background {
+  display: flex;
+
+  .backgroud-image-login {
+    flex: 1;
+    width: 100vh;
+    height: 100vh;
+    background-image: url('../../assets/login-page.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .backgroud-text-login {
+    flex: 1;
+    height: 250px;
+    background-image: url('../../assets/texto-background.svg');
+    background-repeat: no-repeat;
+    margin-top: 60vh;
+    margin-left: 5vh;
+  }
+
+  .login-side {
+    flex: 1;
+    background-color: #ffffff;
+    width: 100vh;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .input-email-login {
+    width: 422px;
+    height: 60.29px;
+
+    border-radius: 20px;
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+
+  .input-password-login {
+    width: 422px;
+    height: 60.29px;
+
+    border-radius: 20px;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .input-email-login-ico {
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .btn-login {
+    border: 0;
+    width: 422px;
+    height: 60.29px;
+    border-radius: 12.06px;
+
+    font-size: 1.3rem;
+    font-weight: 400;
+    background: linear-gradient(132.3deg, #655ede 10.65%, #e89de7 85.2%);
+
+    margin-top: 2rem;
+
+    &:not(:disabled):not(.ant-btn-disabled):hover {
+      background: linear-gradient(132.3deg, #655ede 10.65%, #e89de7 85.2%);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+  }
+
+  .forgot-password {
+    margin-left: 200px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-decoration: none;
+    margin-top: 1rem;
+  }
+
+  .register {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .register a {
+    text-decoration: none;
+  }
+}
