@@ -16,7 +16,7 @@ const postJobAsync = async ({
   imageName,
 }: IPostForm): Promise<void> => {
   const result = await axios.post(
-    `http://localhost:3000/job/create/company/${companyEmail}`,
+    `http://service.ioapply.com/job/create/company/${companyEmail}`,
     job,
     {
       headers: {
@@ -32,7 +32,7 @@ const postJobAsync = async ({
     payload.append('jobId', result.data.jobId)
     payload.append('file', blob, imageName)
 
-    await axios.post(`http://localhost:3000/job/upload-picture`, payload, {
+    await axios.post(`http://service.ioapply.com/job/upload-picture`, payload, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
