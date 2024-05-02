@@ -1,7 +1,7 @@
 import './style.less'
 import { useParams } from 'react-router-dom'
 import useJobDetails from '../../hooks/useJobDetails'
-import { FaCalendar, FaClock, FaUser, FaTshirt } from 'react-icons/fa'
+import { FaCalendar, FaClock, FaUser } from 'react-icons/fa'
 import { Avatar, Tag } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { IoShirtOutline } from 'react-icons/io5'
