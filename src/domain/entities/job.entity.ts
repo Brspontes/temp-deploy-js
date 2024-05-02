@@ -12,7 +12,7 @@ export interface IJob {
   peopleWear?: PeopleWear
 }
 
-interface IPeople {
+export interface IPeople {
   women: number
   men: number
   both: number

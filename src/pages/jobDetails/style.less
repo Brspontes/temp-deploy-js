@@ -41,29 +41,186 @@
 
       height: 400px;
 
-      .summary-contents {
+      .summary-session {
         margin-left: 45px;
       }
 
-      .summary-dates {
+      .summary-contents {
         display: flex;
         font-family: Outfit;
         font-size: 18px;
         font-weight: 100;
         line-height: 16px;
         text-align: left;
+        margin-bottom: 10px;
 
         p {
           margin-right: 25px;
         }
+
+        .icon {
+          margin-right: 5px;
+        }
       }
 
       h1 {
+        margin: 0;
+        font-family: Outfit;
+        font-size: 32px;
+        font-weight: 500;
+        text-align: left;
         color: white;
       }
 
       p {
         color: white;
+      }
+
+      .card-job-employee {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: auto;
+        margin-right: 155px;
+
+        .tag-rounded {
+          border-radius: 15px;
+        }
+
+        .icon-color {
+          color: #ffffff;
+          margin-right: 5px;
+        }
+
+        .ant-tag {
+          padding: 5px 10px;
+        }
+
+        .card-job-employee-created {
+          margin-left: 60px;
+          font-weight: 400;
+          color: #948f8f;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .details {
+    margin: 0 45px;
+    margin-top: 40px;
+    width: auto;
+
+    .header-details {
+      display: flex;
+      justify-content: space-between;
+
+      h1 {
+        font-family: Poppins;
+        font-size: 44px;
+        font-weight: 700;
+        line-height: 57.2px;
+        text-align: right;
+        color: #000000;
+      }
+
+      h3 {
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 29.86px;
+        text-align: left;
+        color: #6b65de;
+        margin: 0;
+      }
+
+      h2 {
+        margin: 0;
+        font-family: Poppins;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 29.86px;
+        text-align: left;
+        color: #000000;
+      }
+    }
+
+    .company-info {
+      display: flex;
+      flex-direction: row;
+      box-sizing: 10px;
+      width: 350px;
+      padding: 5px;
+      background-color: #ffff;
+      border-radius: 16px;
+      box-shadow: 0px 10px 10px 0px rgba(107, 101, 222, 0.25);
+
+      span {
+        margin: auto 0;
+      }
+
+      p {
+        margin-left: 10px;
+      }
+    }
+
+    .job-description {
+      margin-top: 50px;
+      font-family: Outfit;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 32px;
+      text-align: left;
+      color: #797979;
+    }
+
+    .people-wear-section {
+      display: flex;
+      margin: 50px 0px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .tag-rounded {
+        border-radius: 200px;
+      }
+
+      .icon-wear {
+        color: #ffffff;
+      }
+
+      .ant-tag {
+        padding: 5px 10px;
+      }
+
+      .card-job-employee-created {
+        margin-left: 60px;
+        font-weight: 400;
+        color: #948f8f;
+        font-size: 16px;
+      }
+
+      .wear-container {
+        display: flex;
+        flex-direction: row;
+        flex: 0 0 33%;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+
+        .ant-tag {
+          svg {
+            margin-top: 20%;
+          }
+        }
+
+        p {
+          font-family: Poppins;
+          font-size: 12px;
+          font-weight: 400;
+          text-align: left;
+          color: #000000;
+        }
       }
     }
   }
