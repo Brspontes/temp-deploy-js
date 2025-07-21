@@ -5,7 +5,7 @@ import { IShortJobDto } from '../dtos/shortJob.interface'
 const getShortJob = async () => {
   const email = localStorage.getItem('email')
   const result = await axios.get<IShortJobDto[]>(
-    `http://service.ioapply.com/job/by-company?email=${email}&page=1`,
+    `https://service.ioapply.com/job/by-company?email=${email}&page=1`,
     {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,

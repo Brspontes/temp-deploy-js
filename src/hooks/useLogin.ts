@@ -4,7 +4,7 @@ import axios, { AxiosPromise } from 'axios'
 
 const userLoginAsync = async (data: ILogin): AxiosPromise<ILoginResponse> => {
   const response = await axios.post<ILoginResponse>(
-    'http://service.ioapply.com/authorization/login',
+    'https://service.ioapply.com/authorization/login',
     data,
   )
   return response

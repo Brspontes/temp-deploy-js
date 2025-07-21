@@ -4,7 +4,7 @@ import { IFullJobDto } from '../dtos/fullJob.interface'
 
 const getJobDetails = async (id: string): Promise<IFullJobDto> => {
   const result = await axios.get<IFullJobDto>(
-    `http://service.ioapply.com/job/by-id/${id}`,
+    `https://service.ioapply.com/job/by-id/${id}`,
     {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
