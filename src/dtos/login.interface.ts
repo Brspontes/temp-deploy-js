@@ -10,4 +10,5 @@ export interface ILoginResponse {
   userName: string
   role: string
   expiration: number
+  idUser: string
 }

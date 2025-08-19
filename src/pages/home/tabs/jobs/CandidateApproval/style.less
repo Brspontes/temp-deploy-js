@@ -1,0 +1,440 @@
+.candidate-approval-container {
+  background: #f7f8fa;
+  min-height: 100vh;
+  padding: 32px 24px;
+  font-family: 'Inter', sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  justify-content: flex-start;
+}
+
+.page-title.ant-typography {
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+  color: #000 !important;
+  text-align: left !important;
+}
+
+.back-btn, .options-btn {
+  font-size: 1.6rem;
+  color: #666;
+  border: none;
+  background: none;
+  
+  &:hover {
+    color: #6b65de;
+    background: rgba(107, 101, 222, 0.1);
+  }
+}
+
+.filters-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  font-size: 1rem;
+}
+
+.filters-label {
+  color: #6b65de !important;
+  font-weight: 600 !important;
+  margin-right: 8px !important;
+}
+
+.mass-action {
+  color: #6b65de !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+}
+.section {
+  margin-bottom: 32px;
+}
+
+.section-title.ant-typography {
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 16px !important;
+}
+
+.section-title.pending {
+  color: #4a3aff !important;
+}
+
+.section-title.approved {
+  color: #6b65de !important;
+}
+
+.section-title.rejected {
+  color: #e89de7 !important;
+}
+
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.candidate-card.ant-card {
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(80, 80, 80, 0.04) !important;
+  position: relative;
+  border: 2px solid transparent !important;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(80, 80, 80, 0.1) !important;
+  }
+  
+  &.selected {
+    border-color: #6b65de !important;
+    box-shadow: 0 0 0 2px rgba(107, 101, 222, 0.2) !important;
+  }
+  
+  &.approved {
+    background: linear-gradient(135deg, #7C6DFF 0%, #E89DE7 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    position: relative;
+    
+    .select-checkbox {
+      .ant-checkbox-inner {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
+      }
+      
+      .ant-checkbox-checked .ant-checkbox-inner {
+        background-color: #fff !important;
+        border-color: #fff !important;
+        
+        &:after {
+          border-color: #7C6DFF !important;
+        }
+      }
+    }
+    
+    &:after {
+      content: '⋯';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 16px;
+      z-index: 10;
+    }
+    
+    .candidate-name {
+      color: #fff !important;
+      font-weight: 500 !important;
+    }
+    
+    .ant-btn {
+      color: rgba(255, 255, 255, 0.9) !important;
+      background: rgba(255, 255, 255, 0.15) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      border-radius: 6px !important;
+      font-weight: 500 !important;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.25) !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+        color: #fff !important;
+      }
+      
+      &.ant-btn-dangerous {
+        color: rgba(255, 255, 255, 0.9) !important;
+        
+        &:hover {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+  
+  &.rejected {
+    background: #f5f5f5 !important;
+    border: 2px solid #d9d9d9 !important;
+    opacity: 0.6;
+    position: relative;
+    
+    .select-checkbox {
+      .ant-checkbox-inner {
+        background-color: #f5f5f5 !important;
+        border-color: #d9d9d9 !important;
+        opacity: 0.5;
+      }
+      
+      .ant-checkbox-disabled .ant-checkbox-inner {
+        background-color: #f5f5f5 !important;
+        border-color: #d9d9d9 !important;
+      }
+    }
+    
+    &:after {
+      content: '⋯';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: #bfbfbf;
+      font-size: 16px;
+      z-index: 10;
+    }
+    
+    .candidate-avatar {
+      filter: grayscale(30%) !important;
+      opacity: 0.8;
+    }
+    
+    .candidate-name {
+      color: #8c8c8c !important;
+      opacity: 0.8;
+    }
+    
+    &:hover {
+      transform: none !important;
+      box-shadow: 0 2px 8px rgba(80, 80, 80, 0.04) !important;
+      cursor: default;
+    }
+  }
+}
+
+.ant-card-body {
+  padding: 16px 12px !important;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 140px;
+}
+
+.select-checkbox {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  z-index: 2 !important;
+}
+
+.candidate-avatar.ant-avatar {
+  margin: 8px 0 12px 0 !important;
+}
+
+.candidate-name.ant-typography {
+  font-size: 1.05rem !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  margin-bottom: 12px !important;
+  line-height: 1.3 !important;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  
+  .ant-btn {
+    font-size: 0.9rem !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    border: none !important;
+    height: auto !important;
+    
+    &.ant-btn-dangerous {
+      color: #ff4d4f !important;
+      background: rgba(255, 77, 79, 0.1) !important;
+      
+      &:hover {
+        background: rgba(255, 77, 79, 0.2) !important;
+      }
+    }
+    
+    &.approve-btn {
+      color: #52c41a !important;
+      background: rgba(82, 196, 26, 0.1) !important;
+      
+      &:hover {
+        background: rgba(82, 196, 26, 0.2) !important;
+      }
+    }
+  }
+}
+
+.candidate-card.approved {
+  background: linear-gradient(135deg, #6b65de 0%, #9c88ff 100%) !important;
+  color: #fff !important;
+  border: none !important;
+  
+  .candidate-name {
+    color: #fff !important;
+  }
+  
+  .ant-btn {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.3) !important;
+    }
+    
+    &.reject-approved-btn {
+      color: #ff4d4f !important;
+      background: rgba(255, 77, 79, 0.2) !important;
+      border: 1px solid rgba(255, 77, 79, 0.3) !important;
+      
+      &:hover {
+        color: #fff !important;
+        background: rgba(255, 77, 79, 0.4) !important;
+        border-color: rgba(255, 77, 79, 0.5) !important;
+      }
+    }
+  }
+}
+
+.candidate-card.rejected {
+  border: 2px solid #ff7875 !important;
+  background: #fff2f0 !important;
+  
+  .candidate-name {
+    color: #cf1322 !important;
+  }
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.section-title.pending {
+  color: #4a3aff;
+}
+
+.section-title.approved {
+  color: #6b65de;
+}
+
+.section-title.rejected {
+  color: #e89de7;
+}
+
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.candidate-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(80, 80, 80, 0.04);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 140px;
+  border: 2px solid transparent;
+}
+
+.candidate-card .select-checkbox {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+}
+
+.candidate-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #eee;
+  margin-bottom: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.candidate-name {
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.candidate-card .ant-btn {
+  font-size: 0.95rem;
+  padding: 0 12px;
+  border-radius: 8px;
+}
+
+.candidate-card .ant-btn[danger],
+.candidate-card .ant-btn.ant-btn-dangerous {
+  color: #ff4d4f !important;
+  border: none;
+  background: none;
+}
+
+.candidate-card .ant-btn:not([danger]) {
+  color: #52c41a;
+  border: none;
+  background: none;
+}
+
+.candidate-card.approved {
+  background: linear-gradient(90deg, #6b65de 0%, #e89de7 100%);
+  color: #fff;
+  border: none;
+}
+
+.candidate-card.approved .candidate-name {
+  color: #fff;
+}
+
+.candidate-card.approved .ant-btn {
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+}
+
+.candidate-card.rejected {
+  border: 2px solid #e89de7;
+  background: #fff0fa;
+}
+
+.cards-row.approved .candidate-card {
+  box-shadow: none;
+}
+
+.cards-row.rejected .candidate-card {
+  box-shadow: none;
+}
+
+@media (max-width: 1200px) {
+  .cards-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .cards-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .cards-row {
+    grid-template-columns: 1fr;
+  }
+}

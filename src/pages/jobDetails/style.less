@@ -1,225 +1,425 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .job-details-container {
   width: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  min-height: 100vh;
 
-  .job-title {
-    font-family: Poppins;
-    font-size: 32px;
-    font-weight: 500;
-    height: 48px;
-    color: #000000;
-    margin-left: 35px;
-  }
-
-  .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 400px;
+  .header-banner {
     position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    margin-bottom: 24px;
 
-    .image-header {
+    .banner-image {
       width: 100%;
-      height: 400px;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
-    .image-title {
-      height: 400px;
-      width: 100%;
+    .banner-overlay {
       position: absolute;
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.5) 100.37%,
-        rgba(255, 255, 255, 0.3) 100%
+        180deg,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.7) 100%
       );
-
-      height: 400px;
-
-      .summary-session {
-        margin-left: 45px;
-      }
-
-      .summary-contents {
+      
+      .banner-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         display: flex;
-        font-family: Outfit;
-        font-size: 18px;
-        font-weight: 100;
-        line-height: 16px;
-        text-align: left;
-        margin-bottom: 10px;
-
-        p {
-          margin-right: 25px;
-        }
-
-        .icon {
-          margin-right: 5px;
-        }
-      }
-
-      h1 {
-        margin: 0;
-        font-family: Outfit;
-        font-size: 32px;
-        font-weight: 500;
-        text-align: left;
-        color: white;
-      }
-
-      p {
-        color: white;
-      }
-
-      .card-job-employee {
-        display: flex;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
-        margin-left: auto;
-        margin-right: 155px;
-
-        .tag-rounded {
-          border-radius: 15px;
-        }
-
-        .icon-color {
-          color: #ffffff;
-          margin-right: 5px;
-        }
-
-        .ant-tag {
-          padding: 5px 10px;
-        }
-
-        .card-job-employee-created {
-          margin-left: 60px;
-          font-weight: 400;
-          color: #948f8f;
-          font-size: 16px;
-        }
-      }
-    }
-  }
-
-  .details {
-    margin: 0 45px;
-    margin-top: 40px;
-    width: auto;
-
-    .header-details {
-      display: flex;
-      justify-content: space-between;
-
-      h1 {
-        font-family: Poppins;
-        font-size: 44px;
-        font-weight: 700;
-        line-height: 57.2px;
-        text-align: right;
-        color: #000000;
-      }
-
-      h3 {
-        font-family: Poppins;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 29.86px;
-        text-align: left;
-        color: #6b65de;
-        margin: 0;
-      }
-
-      h2 {
-        margin: 0;
-        font-family: Poppins;
-        font-size: 24px;
-        font-weight: 600;
-        line-height: 29.86px;
-        text-align: left;
-        color: #000000;
-      }
-    }
-
-    .company-info {
-      display: flex;
-      flex-direction: row;
-      box-sizing: 10px;
-      width: 350px;
-      padding: 5px;
-      background-color: #ffff;
-      border-radius: 16px;
-      box-shadow: 0px 10px 10px 0px rgba(107, 101, 222, 0.25);
-
-      span {
-        margin: auto 0;
-      }
-
-      p {
-        margin-left: 10px;
-      }
-    }
-
-    .job-description {
-      margin-top: 50px;
-      font-family: Outfit;
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 32px;
-      text-align: left;
-      color: #797979;
-    }
-
-    .people-wear-section {
-      display: flex;
-      margin: 50px 0px;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: space-between;
-
-      .tag-rounded {
-        border-radius: 200px;
-      }
-
-      .icon-wear {
-        color: #ffffff;
-      }
-
-      .ant-tag {
-        padding: 5px 10px;
-      }
-
-      .card-job-employee-created {
-        margin-left: 60px;
-        font-weight: 400;
-        color: #948f8f;
-        font-size: 16px;
-      }
-
-      .wear-container {
-        display: flex;
-        flex-direction: row;
-        flex: 0 0 33%;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-
-        .ant-tag {
-          svg {
-            margin-top: 20%;
+        padding: 16px 20px 20px 20px;
+        
+        .banner-top {
+          .back-button {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 8px 16px;
+            height: auto;
+          }
+          
+          .banner-controls {
+            .control-button {
+              color: white;
+              font-size: 14px;
+              font-weight: 500;
+              padding: 8px 12px;
+              border-radius: 12px;
+              transition: all 0.2s ease;
+              height: auto;
+              border: 1px solid transparent;
+              
+              &:hover {
+                background: rgba(255, 255, 255, 0.1) !important;
+                color: white !important;
+                border-color: rgba(255, 255, 255, 0.2);
+              }
+              
+              &.active {
+                background: rgba(255, 255, 255, 0.15) !important;
+                color: white !important;
+                border-color: rgba(255, 255, 255, 0.3);
+                font-weight: 600;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              }
+            }
           }
         }
+        
+        .banner-bottom {
+          .banner-info-left {
+            flex: 1;
+            
+            .banner-title {
+              color: white;
+              margin: 0 0 20px 0;
+              text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            
+            .banner-details {
+              .banner-icon {
+                color: white;
+                font-size: 16px;
+              }
+              
+              .ant-typography {
+                color: white !important;
+                font-size: 16px;
+                font-weight: 400;
+              }
+            }
+          }
+          
+          .banner-people-tags {
+            .banner-people-tag {
+              border-radius: 25px;
+              padding: 8px 14px;
+              font-size: 16px;
+              font-weight: 700;
+              border: none;
+              color: white !important;
+              
+              .anticon {
+                color: white !important;
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
-        p {
-          font-family: Poppins;
-          font-size: 12px;
+  .main-content {
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    
+    .job-header {
+      margin-bottom: 24px;
+      
+      .job-title-section {
+        .job-category {
+          color: #6B65DE;
+          font-size: 14px;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        .job-title {
+          margin: 0;
+        }
+      }
+      
+      .job-price {
+        text-align: right;
+        
+        .price-total {
+          margin: 0;
+        }
+        
+        .price-per-hour {
+          font-size: 16px;
+          color: #999;
           font-weight: 400;
+        }
+      }
+    }
+
+    .company-section {
+      margin-bottom: 32px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 16px;
+      border: 1px solid #e9ecef;
+      display: inline-block;
+      width: auto;
+      
+      .company-avatar {
+        background: white;
+        border: 2px solid #dee2e6;
+        color: #495057;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+      
+      .company-details {
+        .company-name {
+          margin: 0 0 8px 0;
+          font-size: 20px;
+          font-weight: 600;
+          color: #212529;
+        }
+        
+        .company-location {
+          .ant-typography {
+            color: #6c757d !important;
+          }
+        }
+      }
+    }
+
+    .description-section {
+      margin-bottom: 32px;
+      padding: 0;
+      
+      .ant-typography {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #555;
+        text-align: justify;
+      }
+      
+      .read-more {
+        color: #6B65DE;
+        font-weight: 600;
+        
+        &:hover {
+          color: #5a4fcf;
+        }
+      }
+    }
+
+    .clothing-and-candidates-section {
+      margin-top: 40px;
+      margin-bottom: 32px;
+      align-items: flex-end;
+      
+      .clothing-tags {
+        flex: 1;
+        max-width: 700px;
+        margin-right: 24px;
+        
+        .ant-flex-vertical {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          
+          .ant-flex {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 16px !important;
+            width: 100% !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            
+            .tag-rounded {
+              flex-shrink: 0;
+              width: auto;
+              min-width: fit-content;
+              max-width: 200px;
+            }
+          }
+        }
+      }
+      
+      .candidates-card {
+        border-radius: 16px;
+        border: 2px solid #6B65DE;
+        background: white;
+        box-shadow: 0 2px 8px rgba(107, 101, 222, 0.1);
+        padding: 0;
+        flex-shrink: 0;
+        min-width: 280px;
+        
+        .ant-card-body {
+          padding: 0;
+        }
+        
+        .candidates-button {
+          width: 100%;
+          height: auto;
+          padding: 20px 24px;
+          border-radius: 16px;
+          border: none;
+          background: transparent;
+          
+          &:hover {
+            background: rgba(107, 101, 222, 0.05) !important;
+          }
+          
+          .candidates-content {
+            width: 100%;
+            
+            .candidates-label {
+              display: block;
+              font-size: 14px;
+              color: #6B65DE;
+              margin-bottom: 4px;
+            }
+            
+            .candidates-number {
+              margin: 0;
+              font-size: 20px;
+              font-weight: 600;
+              color: #6B65DE;
+            }
+            
+            .candidates-arrow {
+              color: #6B65DE;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .job-details-container {
+    .header-banner {
+      height: 280px;
+      border-radius: 12px;
+      
+      .banner-overlay .banner-content {
+        padding: 12px 16px 16px 16px;
+        
+        .banner-top {
+          margin-bottom: 8px;
+          
+          .back-button {
+            font-size: 13px;
+          }
+          
+          .banner-controls {
+            .control-button {
+              font-size: 13px;
+              padding: 6px 10px;
+              
+              &.active {
+                background: rgba(255, 255, 255, 0.15) !important;
+                color: white !important;
+                border-color: rgba(255, 255, 255, 0.3);
+                font-weight: 600;
+              }
+            }
+          }
+        }
+        
+        .banner-bottom {
+          flex-direction: column;
+          gap: 16px;
+          align-items: flex-start;
+          
+          .banner-info-left {
+            .banner-title {
+              font-size: 28px;
+              margin-bottom: 16px;
+            }
+            
+            .banner-details {
+              .ant-typography {
+                font-size: 14px;
+              }
+            }
+          }
+          
+          .banner-people-tags {
+            align-self: flex-end;
+            
+            .banner-people-tag {
+              padding: 6px 10px;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+    
+    .main-content {
+      padding: 0 16px;
+      
+      .job-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        
+        .job-price {
           text-align: left;
-          color: #000000;
+        }
+      }
+      
+      .company-section {
+        padding: 16px;
+        margin-bottom: 24px;
+      }
+      
+      .clothing-and-candidates-section {
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+        
+        .clothing-tags {
+          max-width: 100%;
+          margin-right: 0;
+          
+          .ant-flex-vertical {
+            gap: 16px;
+            
+            .ant-flex {
+              justify-content: flex-start;
+              gap: 12px !important;
+            }
+          }
+        }
+        
+        .candidates-card {
+          align-self: center;
+          max-width: 300px;
+          min-width: 250px;
+          
+          .candidates-button {
+            padding: 16px 20px;
+            
+            .candidates-content {
+              .candidates-number {
+                font-size: 18px;
+              }
+              
+              .candidates-arrow {
+                font-size: 14px;
+              }
+            }
+          }
         }
       }
     }

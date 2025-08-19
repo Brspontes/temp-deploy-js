@@ -14,4 +14,35 @@
     margin-bottom: 10px;
     border-radius: 8px;
   }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    .ant-pagination {
+      .ant-pagination-item-active {
+        border-color: #6b65de;
+
+        a {
+          color: #6b65de;
+        }
+      }
+
+      .ant-pagination-item:hover {
+        border-color: #6b65de;
+
+        a {
+          color: #6b65de;
+        }
+      }
+
+      .ant-pagination-next:hover .ant-pagination-item-link,
+      .ant-pagination-prev:hover .ant-pagination-item-link {
+        border-color: #6b65de;
+        color: #6b65de;
+      }
+    }
+  }
 }

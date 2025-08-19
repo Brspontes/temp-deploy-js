@@ -1,9 +1,17 @@
 .background {
   display: flex;
 
+  @media (max-width: 576px) {
+    .mobile-banner-side {
+      display: none;
+    }
+  }
+
   .backgroud-image-login {
-    flex: 1;
-    width: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: end;
+
     height: 100vh;
     background-image: url('../../assets/login-page.svg');
     background-repeat: no-repeat;
@@ -11,87 +19,109 @@
     background-position: center;
     margin: 0;
     padding: 0;
-  }
 
-  .backgroud-text-login {
-    flex: 1;
-    height: 250px;
-    background-image: url('../../assets/texto-background.svg');
-    background-repeat: no-repeat;
-    margin-top: 60vh;
-    margin-left: 5vh;
+    .welcome-text {
+      margin-left: 5rem;
+      margin-bottom: 10rem;
+    }
+
+    @media (max-width: 768px) {
+      .welcome-text {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .welcome-text {
+        display: none;
+      }
+    }
   }
 
   .login-side {
     flex: 1;
     background-color: #ffffff;
-    width: 100vh;
     height: 100vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-  }
 
-  .input-email-login {
-    width: 422px;
-    height: 60.29px;
+    .input-email-login {
+      width: 422px;
+      height: 60.29px;
 
-    border-radius: 20px;
-    font-size: 1rem;
-    margin-top: 2rem;
-  }
-
-  .input-password-login {
-    width: 422px;
-    height: 60.29px;
-
-    border-radius: 20px;
-    font-size: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .input-email-login-ico {
-    margin-left: 20px;
-    margin-right: 10px;
-  }
-
-  .btn-login {
-    border: 0;
-    width: 422px;
-    height: 60.29px;
-    border-radius: 12.06px;
-
-    font-size: 1.3rem;
-    font-weight: 400;
-    background: linear-gradient(132.3deg, #655ede 10.65%, #e89de7 85.2%);
-
-    margin-top: 2rem;
-
-    &:not(:disabled):not(.ant-btn-disabled):hover {
-      background: linear-gradient(132.3deg, #655ede 10.65%, #e89de7 85.2%);
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 20px;
+      font-size: 1rem;
+      margin-top: 2rem;
     }
-  }
 
-  .forgot-password {
-    margin-left: 200px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    text-decoration: none;
-    margin-top: 1rem;
-  }
+    .input-password-login {
+      width: 422px;
+      height: 60.29px;
 
-  .register {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    text-decoration: none;
-  }
+      border-radius: 20px;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+    }
 
-  .register a {
-    text-decoration: none;
+    .input-email-login-ico {
+      margin-left: 20px;
+      margin-right: 10px;
+    }
+
+    .btn-login {
+      border: 0;
+      width: 422px;
+      height: 60.29px;
+      border-radius: 12.06px;
+
+      font-size: 1.3rem;
+      font-weight: 400;
+      background: linear-gradient(132.3deg, #655ede 10.65%, #e89de7 85.2%);
+
+      margin-top: 2rem;
+
+      &:not(:disabled):not(.ant-btn-disabled):hover {
+        background: linear-gradient(132.3deg, #655ede 10.65%, #e89de7 85.2%);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+    }
+
+    .forgot-password {
+      margin-left: 200px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-style: normal;
+      text-decoration: none;
+      margin-top: 1rem;
+    }
+
+    .register {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .register a {
+      text-decoration: none;
+    }
+
+    @media (max-width: 576px) {
+      .input-email-login {
+        width: 300px;
+      }
+      .input-password-login {
+        width: 300px;
+      }
+      .btn-login {
+        width: 300px;
+      }
+      .forgot-password {
+        margin-left: 100px;
+      }
+    }
   }
 }

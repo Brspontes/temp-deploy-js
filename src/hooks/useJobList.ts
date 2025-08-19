@@ -1,14 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { IShortJobDto } from '../dtos/shortJob.interface'
+import { IShortJobDto } from '@/dtos/shortJob.interface'
+import { getCredentials } from '@/utils/util'
+
+const baseUrl = import.meta.env.VITE_API
 
 const getShortJob = async () => {
-  const email = localStorage.getItem('email')
+  const { token } = getCredentials()
   const result = await axios.get<IShortJobDto[]>(
-    `https://service.ioapply.com/job/by-company?email=${email}&page=1`,
+    `${baseUrl}/v2/job/all/company/open`,
     {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${token}`,
       },
     },
   )
@@ -16,7 +19,10 @@ const getShortJob = async () => {
 }
 
 export function useJobList() {
-  const query = useQuery({ queryKey: ['shortjob'], queryFn: getShortJob })
+  const query = useQuery({
+    queryKey: ['shortjob'],
+    queryFn: getShortJob
+  })
   return query
 }
 

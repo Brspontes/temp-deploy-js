@@ -1,34 +1,58 @@
 import './Login.less'
-import loginSvg from '../../assets/apply-logo.svg'
-import { Button, Input } from 'antd'
+import loginSvg from '@/assets/apply-logo.svg'
+import textSvg from '@/assets/texto-background.svg'
+import { useToDoLogin } from '@/hooks/useLogin'
+
+import { Button, Col, Input, Row, Spin } from 'antd'
 import {
   UserOutlined,
   LockOutlined,
   EyeTwoTone,
   EyeInvisibleOutlined,
-} from '@ant-design/icons'
-import { useToDoLogin } from '../../hooks/useLogin'
+  LoadingOutlined
+} from '@/utils/icons'
+
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LoadingOutlined } from '@ant-design/icons'
-import { Spin } from 'antd'
+import { toast } from 'react-toastify'
+import { systemMessage } from '@/utils/message'
+import { toastErrorConfig } from '@/utils/util'
 
 function Login() {
-  const { mutate, isSuccess, isPending } = useToDoLogin()
+  const { mutate, isPending } = useToDoLogin()
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isSuccess) navigate('/home')
-  }, [isSuccess, navigate])
+    if (localStorage.getItem('userLogged')) {
+      toast(systemMessage.login.unauthorizedPage, toastErrorConfig)
+      localStorage.clear()
+    }
+  }, [])
 
   return (
-    <>
-      <div className="background">
+    <Row className="background">
+      <Col
+        className="mobile-banner-side"
+        xs={{ span: 24 }}
+        sm={{ span: 24 }}
+        md={{ span: 12 }}
+        lg={{ span: 12 }}
+        xl={{ span: 12 }}
+      >
         <div className="backgroud-image-login">
-          <div className="backgroud-text-login"></div>
+          <img className="welcome-text" src={textSvg} alt="texto boas vindas" />
         </div>
+      </Col>
+      <Col
+        className="mobile-login-side"
+        xs={{ span: 24 }}
+        sm={{ span: 24 }}
+        md={{ span: 12 }}
+        lg={{ span: 12 }}
+        xl={{ span: 12 }}
+      >
         <div className="login-side">
           <img src={loginSvg} alt="Logo Apply" />
           <Input
@@ -46,7 +70,10 @@ function Login() {
             placeholder="Palavra-passe"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <a className="forgot-password" href="#">
+          <a className="forgot-password" href="#" onClick={(e) => {
+            e.preventDefault();
+            navigate('/forgot-password');
+          }}>
             Esqueceste a Palavra-passe?
           </a>
           <Button
@@ -63,11 +90,11 @@ function Login() {
             )}
           </Button>
           <p className="register">
-            Não tens uma conta? <a href="#">Registra-te</a>
+            Não tens uma conta? <a href="#" onClick={() => navigate('/register')}>Registra-te</a>
           </p>
         </div>
-      </div>
-    </>
+      </Col>
+    </Row>
   )
 }
 

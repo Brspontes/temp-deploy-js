@@ -1,30 +1,43 @@
 import { Avatar, Tag } from 'antd'
 import './style.less'
-import { UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '@/utils/icons'
 import { RiShoppingBagLine } from 'react-icons/ri'
 import { FaUser } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 interface ShortjobDisplayProps {
   id: string
+  companyId: string
   company: string
   location: string
   function: string
-  mens: string
-  womans: string
+  mens?: number
+  womans?: number
   jobDate: Date
   image: {
     imagePath: string
   }
 }
 
-function ShortjobDisplay(props: ShortjobDisplayProps) {
+function ShortjobDisplay(props: Readonly<ShortjobDisplayProps>) {
   const navigate = useNavigate()
+  
+  const handleCardClick = () => {
+    navigate(`/home/jobs/open-jobs/${props.id}/${props.companyId}`)
+  }
+  
   return (
     <div
       className="card-contaianer"
-      onClick={() => navigate(`/home/jobs/open-jobs/${props.id}`)}
+      onClick={handleCardClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleCardClick()
+        }
+      }}
     >
-      {props.image ? (
+      {props.image?.imagePath ? (
         <Avatar size={53} src={props.image.imagePath} />
       ) : (
         <Avatar size={53} icon={<UserOutlined />} />
@@ -41,20 +54,24 @@ function ShortjobDisplay(props: ShortjobDisplayProps) {
         </div>
         <div className="card-job-employee">
           <div>
-            <Tag
-              color="#6B65DE"
-              className="tag-rounded"
-              icon={<FaUser className="icon-color" />}
-            >
-              {props.mens}
-            </Tag>
-            <Tag
-              color="#E89DE7"
-              className="tag-rounded"
-              icon={<FaUser className="icon-color" />}
-            >
-              {props.womans}
-            </Tag>
+            {props?.mens && (
+              <Tag
+                color="#6B65DE"
+                className="tag-rounded"
+                icon={<FaUser className="icon-color" />}
+              >
+                {props.mens}
+              </Tag>
+            )}
+            {props?.womans && (
+              <Tag
+                color="#E89DE7"
+                className="tag-rounded"
+                icon={<FaUser className="icon-color" />}
+              >
+                {props.womans}
+              </Tag>
+            )}
           </div>
           <p className="card-job-employee-created">{`${
             props.jobDate ? new Date(props.jobDate).toDateString() : '-'

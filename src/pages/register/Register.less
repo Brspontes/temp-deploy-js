@@ -1,0 +1,333 @@
+.background {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #595959 !important;
+    background-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  @media (max-width: 576px) {
+    .mobile-banner-side {
+      display: none;
+    }
+  }
+
+  .backgroud-image-login {
+    display: flex;
+    justify-content: flex-start;
+    align-items: end;
+
+    height: 100vh;
+    background-image: url('../../assets/login-page.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+
+    .welcome-text {
+      margin-left: 5rem;
+      margin-bottom: 10rem;
+    }
+
+    @media (max-width: 768px) {
+      .welcome-text {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .welcome-text {
+        display: none;
+      }
+    }
+  }
+
+  .register-side {
+    flex: 1;
+    background-color: #ffffff;
+    min-height: 100vh;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1.5rem 0;
+
+    .input-field-register {
+      width: 422px;
+      height: 60.29px;
+
+      border-radius: 20px;
+      font-size: 1rem;
+      margin-top: 1rem;
+      
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+        -webkit-text-fill-color: #595959 !important;
+        background-color: white !important;
+        background-clip: content-box !important;
+      }
+    }
+
+    .input-field-register-ico {
+      margin-left: 20px;
+      margin-right: 10px;
+    }
+
+    .phone-input-container {
+      width: 422px;
+      margin-top: 1rem;
+      
+      .phone-input-wrapper {
+        width: 100%;
+        height: 60.29px;
+        border-radius: 20px;
+        border: 1px solid #d9d9d9;
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        position: relative;
+        
+        &:hover {
+          border-color: #40a9ff;
+        }
+        
+        &:focus-within {
+          border-color: #40a9ff;
+          box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+        
+        .phone-icon {
+          margin-left: 20px;
+          margin-right: 10px;
+          color: black;
+        }
+        
+        .country-code-select {
+          border: none;
+          background: transparent;
+          outline: none;
+          font-size: 1rem;
+          color: #595959;
+          cursor: pointer;
+          padding: 0 5px;
+          
+          &:focus {
+            outline: none;
+          }
+        }
+        
+        .phone-separator {
+          width: 1px;
+          height: 20px;
+          background-color: #d9d9d9;
+          margin: 0 10px;
+        }
+        
+        .phone-number-input {
+          border: none;
+          outline: none;
+          background: transparent;
+          flex: 1;
+          font-size: 1rem;
+          color: #595959;
+          padding: 0;
+          
+          &::placeholder {
+            color: #bfbfbf;
+          }
+          
+          &:focus {
+            outline: none;
+          }
+          
+          &:-webkit-autofill,
+          &:-webkit-autofill:hover,
+          &:-webkit-autofill:focus,
+          &:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px white inset !important;
+            -webkit-text-fill-color: #595959 !important;
+            background-color: transparent !important;
+          }
+        }
+      }
+    }
+
+    .terms-container {
+      width: 422px;
+      margin-top: 0.8rem;
+      
+      .ant-checkbox-wrapper {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        font-size: 0.9rem;
+        
+        a {
+          color: #6b65de;
+          text-decoration: none;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .btn-register {
+      border: 0;
+      width: 422px;
+      height: 60.29px;
+      border-radius: 12.06px;
+
+      font-size: 1.3rem;
+      font-weight: 400;
+      background: linear-gradient(132.3deg, #655ede 10.65%, #e89de7 85.2%);
+
+      margin-top: 1.2rem;
+
+      &:not(:disabled):not(.ant-btn-disabled):hover {
+        background: linear-gradient(132.3deg, #655ede 10.65%, #e89de7 85.2%);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      
+      &:disabled {
+        background: #d9d9d9;
+        color: #ffffff;
+        cursor: not-allowed;
+      }
+    }
+
+    .login-link {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1rem;
+      
+      a {
+        color: #6b65de;
+        text-decoration: none;
+        cursor: pointer;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .resend-code {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .resend-code a {
+      color: #1890ff;
+      text-decoration: none;
+    }
+
+    .resend-code a:hover {
+      text-decoration: underline;
+    }
+
+    .social-register {
+      margin-top: 1rem;
+      text-align: center;
+      
+      p {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        color: #929292;
+        margin-bottom: 1rem;
+      }
+      
+      .social-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        
+        .social-btn {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.2rem;
+          font-weight: bold;
+          padding: 0;
+          
+          span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            
+            svg {
+              margin: 0;
+              vertical-align: middle;
+            }
+          }
+          
+          &.google-btn {
+            background-color: white;
+            border: 1px solid #d9d9d9;
+            
+            &:hover {
+              background-color: #f5f5f5;
+              border-color: #4285f4;
+            }
+          }
+          
+          &.apple-btn {
+            background-color: white;
+            border: 1px solid #d9d9d9;
+            
+            &:hover {
+              background-color: #f5f5f5;
+              border-color: #333333;
+            }
+          }
+          
+          &.facebook-btn {
+            background-color: white;
+            border: 1px solid #d9d9d9;
+            
+            &:hover {
+              background-color: #f5f5f5;
+              border-color: #1877f2;
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 576px) {
+      .input-field-register {
+        width: 300px;
+      }
+      .phone-input-container {
+        width: 300px;
+      }
+      .btn-register {
+        width: 300px;
+      }
+      .terms-container {
+        width: 300px;
+      }
+    }
+  }
+}

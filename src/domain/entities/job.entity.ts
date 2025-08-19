@@ -1,12 +1,12 @@
 export interface IJob {
   title?: string
   client?: string
-  eventStartDateHour?: Date
+  eventDates?: EventDates[]
   location?: string
   region?: string
   publishTo?: string
   jobFunction?: string
-  salary?: number
+  totalSalary?: number
   description?: string
   people?: People
   peopleWear?: PeopleWear
@@ -38,6 +38,15 @@ interface IPeopleWear {
   womenShoes: string
 }
 
+export class EventDates {
+  constructor(eventStartDateHour: Date, eventFinishDateHour: Date) {
+    this.eventStartDateHour = eventStartDateHour
+    this.eventFinishDateHour = eventFinishDateHour
+  }
+  eventStartDateHour: Date
+  eventFinishDateHour: Date
+}
+
 export class PeopleWear implements IPeopleWear {
   constructor(
     menTshirt: string,
@@ -65,12 +74,11 @@ export class PeopleWear implements IPeopleWear {
 export class Job implements IJob {
   title: string
   client: string
-  eventStartDateHour: Date
-  eventFinishDateHour: Date
+  eventDates: EventDates[]
   location: string
   region: string
   jobFunction: string
-  salary: number
+  totalSalary: number
   paymentType: string
   currency: string
   description: string
@@ -80,32 +88,46 @@ export class Job implements IJob {
   peopleWear: PeopleWear
   publishTo: string
 
-  constructor(
-    title: string,
-    client: string,
-    eventStartDateHour: Date,
-    eventFinishDateHour: Date,
-    location: string,
-    region: string,
-    jobFunction: string,
-    salary: number,
-    paymentType: string,
-    currency: string,
-    description: string,
-    isActive: boolean,
-    isFinished: boolean,
-    people: People,
-    peopleWear: PeopleWear,
-    publishTo: string,
-  ) {
+  constructor({
+    title,
+    client,
+    eventDates,
+    location,
+    region,
+    jobFunction,
+    totalSalary,
+    paymentType,
+    currency,
+    description,
+    isActive,
+    isFinished,
+    people,
+    peopleWear,
+    publishTo,
+  }: {
+    title: string
+    client: string
+    eventDates: EventDates[]
+    location: string
+    region: string
+    jobFunction: string
+    totalSalary: number
+    paymentType: string
+    currency: string
+    description: string
+    isActive: boolean
+    isFinished: boolean
+    people: People
+    peopleWear: PeopleWear
+    publishTo: string
+  }) {
     this.title = title
     this.client = client
-    this.eventStartDateHour = eventStartDateHour
-    this.eventFinishDateHour = eventFinishDateHour
+    this.eventDates = eventDates
     this.location = location
     this.region = region
     this.jobFunction = jobFunction
-    this.salary = salary
+    this.totalSalary = totalSalary
     this.paymentType = paymentType
     this.currency = currency
     this.description = description

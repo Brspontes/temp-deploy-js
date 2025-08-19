@@ -1,5 +1,5 @@
 import './style.less'
-import logo from '../../assets/apply-logo-header.svg'
+import logo from '@/assets/apply-logo-header.svg'
 
 const Header = () => {
   return (

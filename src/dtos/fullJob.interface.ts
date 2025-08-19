@@ -1,11 +1,12 @@
 interface PeopleDto {
   women: number
   men: number
-  both: number
+  both?: number
+  unisex?: number
 }
 
-interface JobImage {
-  imagePath: string
+interface SalaryDto {
+  [key: string]: any
 }
 
 interface PeopleWearDto {
@@ -17,23 +18,42 @@ interface PeopleWearDto {
   womenShoes: string
 }
 
-interface QuestionnaireDto {
-  question: string
-  questionId: string
+interface CandidatesDetailsDto {
+  totalCandidates: number
+  totalApproved: number
+  totalRefused: number
+}
+
+interface EventDateDto {
+  id: string
+  jobId: string
+  startDate: string
+  finishDate: string
+  menQuantity: number
+  womenQuantity: number
+  menWomenQuantity: number
+  createdAt: string
+  updatedAt: string
 }
 
 export interface IFullJobDto {
   jobId: string
+  jobPeriodId?: string
+  companyId: string
   companyName: string
-  salary: number
+  companyAnnouncimentsQuantity?: number
+  companyLocation: string
+  salary: SalaryDto
+  totalSalary: SalaryDto
   paymentType: string
   currency: string
-  eventStartDateHour: string
-  eventFinishDateHour: string
+  eventStartDateHour?: string
+  eventFinishDateHour?: string
+  eventDates?: EventDateDto[]
   location: string
   jobFunction: string
   people: PeopleDto
-  image: JobImage
+  image: string
   client: string
   title: string
   region: string
@@ -41,8 +61,12 @@ export interface IFullJobDto {
   isActive: boolean
   isFinished: boolean
   peopleWear: PeopleWearDto
-  publishTo: string[]
-  questionnaire: QuestionnaireDto[]
+  publishTo: string
+  questionnaire: string[]
   companyEmail: string
   companyPicture: string
+  isFollowing?: boolean
+  isFavorite?: boolean
+  isEnroled?: boolean
+  candidatesDetails: CandidatesDetailsDto
 }

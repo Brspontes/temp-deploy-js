@@ -1,0 +1,209 @@
+.edit-profile-container {
+  background: #f8f9fa;
+  min-height: 100vh;
+  
+  .edit-profile-header {
+    background: white;
+    padding: 24px 32px;
+    border-bottom: 1px solid #f0f0f0;
+    
+    .back-button {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333333;
+      padding: 0;
+      height: auto;
+      display: flex;
+      align-items: center;
+      
+      .anticon {
+        margin-right: 12px;
+        font-size: 16px;
+      }
+
+      &:hover {
+        color: #6366f1;
+      }
+    }
+  }
+
+  .edit-profile-content {
+    padding: 40px 32px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .profile-photo-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+
+    .avatar-container {
+      position: relative;
+
+      .profile-avatar {
+        border: 4px solid transparent;
+        background: linear-gradient(white, white) padding-box,
+                    linear-gradient(135deg, #6366f1, #8b5cf6) border-box;
+        background-color: #f5f5f5;
+      }
+    }
+
+    .upload-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .upload-button {
+        background: #6366f1;
+        color: white;
+        border: none;
+        border-radius: 24px;
+        height: 40px;
+        padding: 0 24px;
+        font-weight: 500;
+        font-size: 14px;
+        margin-bottom: 8px;
+
+        &:hover {
+          background: #5856eb;
+          color: white;
+        }
+      }
+
+      .upload-info {
+        color: #9ca3af;
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+  }
+
+  .profile-form {
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 24px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    .form-field {
+      margin-bottom: 0;
+
+      .ant-form-item-label > label {
+        color: #6b7280;
+        font-weight: 400;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .ant-input {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        height: 44px;
+        font-size: 16px;
+        color: #374151;
+        background: #ffffff;
+        
+        &:focus, &:hover {
+          border-color: #d1d5db;
+          box-shadow: none;
+        }
+
+        &:focus {
+          border-color: #6366f1;
+        }
+      }
+
+      .password-field {
+        position: relative;
+
+        .ant-input {
+          padding-right: 40px;
+        }
+
+        .edit-icon {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #9ca3af;
+          font-size: 16px;
+          z-index: 2;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .full-width-field {
+      margin-bottom: 32px;
+
+      .ant-form-item-label > label {
+        color: #6b7280;
+        font-weight: 400;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .ant-input {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 16px;
+        color: #374151;
+        background: #ffffff;
+        min-height: 100px;
+        padding: 12px;
+        resize: vertical;
+        
+        &:focus, &:hover {
+          border-color: #d1d5db;
+          box-shadow: none;
+        }
+
+        &:focus {
+          border-color: #6366f1;
+        }
+      }
+    }
+
+    .submit-section {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+
+      .save-button {
+        background: #6366f1;
+        border: none;
+        border-radius: 24px;
+        height: 48px;
+        padding: 0 32px;
+        font-weight: 600;
+        font-size: 16px;
+        min-width: 200px;
+
+        &:hover {
+          background: #5856eb;
+        }
+      }
+    }
+  }
+
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+
+  .ant-input {
+    font-family: inherit;
+    
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+}

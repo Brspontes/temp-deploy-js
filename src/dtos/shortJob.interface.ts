@@ -1,27 +1,16 @@
 interface People {
   women: number
   men: number
-  both: number
-}
-
-interface JobImage {
-  imagePath: string
+  unisex: number
 }
 
 export interface IShortJobDto {
   jobId: string
-  companyName: string
-  companyEmail: string
+  jobPeriodId: string
+  companyId: string
   title: string
-  salary: number
-  paymentType: string
-  currency: string
-  eventStartDateHour: Date
-  eventFinishDateHour: Date
-  location: string
   jobFunction: string
   people: People
-  image: JobImage
+  image: string
   client: string
-  isFavorite: boolean
 }
