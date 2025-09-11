@@ -1,6 +1,6 @@
 import { ArrowLeftOutlined, DeleteOutlined } from '@/utils/icons'
 import './style.less'
-import { Button, DatePicker, Modal, Table, TimePicker } from 'antd'
+import { Button, DatePicker, Modal, Table, TimePicker, InputNumber, Select } from 'antd'
 import { LuPlusCircle } from 'react-icons/lu'
 import dayjs, { Dayjs } from 'dayjs'
 import { useEffect, useState } from 'react'
@@ -8,6 +8,9 @@ import { useEffect, useState } from 'react'
 interface EventDatesHour {
   eventStartDateHour: Dayjs
   eventFinishDateHour: Dayjs
+  totalSalary: number
+  paymentType: string
+  currency: string
 }
 
 interface ModalHourSettingsProps {
@@ -21,6 +24,9 @@ interface ModalHourSettingsProps {
 interface DataSourceItem {
   key: string
   date: Dayjs | null
+  totalSalary: number
+  paymentType: string
+  currency: string
 }
 
 const dateFormat = 'DD/MM/YYYY'
@@ -117,8 +123,88 @@ export default function ModalHourSettings(props: ModalHourSettingsProps) {
       ),
     },
     {
+      title: 'Salário Total',
+      dataIndex: 'totalSalary',
+      render: (_: any, record: any) => (
+        <InputNumber
+          min={0}
+          precision={2}
+          placeholder="0.00"
+          value={props.eventDates[Number(record.key)]?.totalSalary}
+          onChange={(value) => {
+            const index = Number(record.key)
+            const newValue = [...props.eventDates]
+            
+            if (newValue[index]) {
+              newValue[index] = {
+                ...newValue[index],
+                totalSalary: value || 0,
+              }
+              props.setState(newValue)
+            }
+          }}
+        />
+      ),
+    },
+    {
+      title: 'Tipo de Pagamento',
+      dataIndex: 'paymentType',
+      render: (_: any, record: any) => (
+        <Select
+          placeholder="Selecione"
+          value={props.eventDates[Number(record.key)]?.paymentType}
+          onChange={(value) => {
+            const index = Number(record.key)
+            const newValue = [...props.eventDates]
+            
+            if (newValue[index]) {
+              newValue[index] = {
+                ...newValue[index],
+                paymentType: value,
+              }
+              props.setState(newValue)
+            }
+          }}
+          options={[
+            { value: 'Hour', label: 'Por Hora' },
+            { value: 'Day', label: 'Por Dia' },
+            { value: 'Fixed', label: 'Valor Fixo' },
+          ]}
+        />
+      ),
+    },
+    {
+      title: 'Moeda',
+      dataIndex: 'currency',
+      render: (_: any, record: any) => (
+        <Select
+          placeholder="Moeda"
+          value={props.eventDates[Number(record.key)]?.currency}
+          onChange={(value) => {
+            const index = Number(record.key)
+            const newValue = [...props.eventDates]
+            
+            if (newValue[index]) {
+              newValue[index] = {
+                ...newValue[index],
+                currency: value,
+              }
+              props.setState(newValue)
+            }
+          }}
+          options={[
+            { value: 'EUR', label: 'EUR (€)' },
+            { value: 'USD', label: 'USD ($)' },
+            { value: 'BRL', label: 'BRL (R$)' },
+            { value: 'GBP', label: 'GBP (£)' },
+          ]}
+        />
+      ),
+    },
+    {
       title: 'Ações',
       dataIndex: 'actions',
+      width: 80,
       render: (_: any, record: any) => (
         <Button
           type="text"
@@ -134,6 +220,9 @@ export default function ModalHourSettings(props: ModalHourSettingsProps) {
       return {
         date: eventDate.eventStartDateHour,
         key: `${index}`,
+        totalSalary: eventDate.totalSalary || 0,
+        paymentType: eventDate.paymentType || 'Hour',
+        currency: eventDate.currency || 'EUR',
       }
     })
     setDataSource(result)
@@ -154,8 +243,27 @@ export default function ModalHourSettings(props: ModalHourSettingsProps) {
       ? String(Number(dataSource[dataSource.length - 1].key) + 1)
       : '0'
 
-    const result = [...dataSource, { key: newKey, date: null }]
+    const newDataSourceItem = { 
+      key: newKey, 
+      date: null,
+      totalSalary: 0,
+      paymentType: 'Hour',
+      currency: 'EUR'
+    }
+
+    const newEventDate = {
+      eventStartDateHour: dayjs(),
+      eventFinishDateHour: dayjs(),
+      totalSalary: 0,
+      paymentType: 'Hour',
+      currency: 'EUR'
+    }
+
+    const result = [...dataSource, newDataSourceItem]
+    const newEventDates = [...props.eventDates, newEventDate]
+    
     setDataSource(result)
+    props.setState(newEventDates)
   }
 
   return (
@@ -165,6 +273,7 @@ export default function ModalHourSettings(props: ModalHourSettingsProps) {
       okText={'Salvar'}
       onCancel={props.handleCancel}
       cancelButtonProps={{ style: { display: 'none' } }}
+      width={1200}
     >
       <div className="hour-setting-content">
         <div className="hour-setting-header">
@@ -182,6 +291,7 @@ export default function ModalHourSettings(props: ModalHourSettingsProps) {
           dataSource={dataSource}
           columns={columns}
           pagination={false}
+          scroll={{ x: 'max-content' }}
           style={{ borderRadius: '10px' }}
           footer={() => (
             <Button

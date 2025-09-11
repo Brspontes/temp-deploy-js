@@ -1,7 +1,7 @@
-import { Button, Tag, Typography, Space } from 'antd'
+import { Button, Typography } from 'antd'
 import { ArrowLeftOutlined, MoreOutlined } from '@ant-design/icons'
 
-const { Title, Text } = Typography
+const { Title } = Typography
 
 interface PageHeaderProps {
   title: string
@@ -28,7 +28,7 @@ export const PageHeader = ({ title, onBack, onOptions }: PageHeaderProps) => {
         />
       </div>
 
-      <div className="filters-row">
+      {/* <div className="filters-row">
         <Space size="small">
           <Text className="filters-label">Filtros:</Text>
           <Tag color="default">Masculino</Tag>
@@ -38,7 +38,7 @@ export const PageHeader = ({ title, onBack, onOptions }: PageHeaderProps) => {
           <Tag color="red">Rejeitados</Tag>
         </Space>
         <Text className="mass-action">Ações em massa:</Text>
-      </div>
+      </div> */}
     </>
   )
 }

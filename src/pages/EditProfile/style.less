@@ -1,6 +1,20 @@
 .edit-profile-container {
   background: #f8f9fa;
   min-height: 100vh;
+
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 16px;
+
+    p {
+      color: #6b7280;
+      margin: 0;
+    }
+  }
   
   .edit-profile-header {
     background: white;
@@ -49,6 +63,20 @@
                     linear-gradient(135deg, #6366f1, #8b5cf6) border-box;
         background-color: #f5f5f5;
       }
+
+      .avatar-loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
     }
 
     .upload-controls {
@@ -71,12 +99,27 @@
           background: #5856eb;
           color: white;
         }
+
+        &:disabled, &.ant-btn-loading {
+          background: #d1d5db;
+          color: #9ca3af;
+          
+          &:hover {
+            background: #d1d5db;
+            color: #9ca3af;
+          }
+        }
       }
 
       .upload-info {
         color: #9ca3af;
         font-size: 14px;
         margin: 0;
+
+        .pending-upload {
+          color: #f59e0b;
+          font-weight: 500;
+        }
       }
     }
   }
@@ -119,6 +162,13 @@
 
         &:focus {
           border-color: #6366f1;
+        }
+
+        &:disabled {
+          background: #f9fafb;
+          color: #9ca3af;
+          border-color: #e5e7eb;
+          cursor: not-allowed;
         }
       }
 
@@ -170,6 +220,13 @@
         &:focus {
           border-color: #6366f1;
         }
+
+        &:disabled {
+          background: #f9fafb;
+          color: #9ca3af;
+          border-color: #e5e7eb;
+          cursor: not-allowed;
+        }
       }
     }
 
@@ -191,6 +248,16 @@
         &:hover {
           background: #5856eb;
         }
+
+        &:disabled, &.ant-btn-loading {
+          background: #d1d5db;
+          color: #9ca3af;
+          
+          &:hover {
+            background: #d1d5db;
+            color: #9ca3af;
+          }
+        }
       }
     }
   }
@@ -204,6 +271,19 @@
     
     &::placeholder {
       color: #9ca3af;
+    }
+  }
+
+  .legal-section {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #f0f0f0;
+
+    h3 {
+      color: #374151;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
     }
   }
 }

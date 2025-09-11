@@ -4,24 +4,18 @@ import useJobDetails from '@/hooks/useJobDetails'
 
 type ActiveTab = 'meu-anuncio' | 'controlo'
 
-export default function useLogicJobDetails() {
+export default function useLogicJobControl() {
     const { jobId, companyId } = useParams()
     const navigate = useNavigate()
     const { data } = useJobDetails(jobId || '', companyId || '', true)
-    const [isExpanded, setIsExpanded] = useState(false)
-    const [activeTab, setActiveTab] = useState<ActiveTab>('meu-anuncio')
+    const [activeTab, setActiveTab] = useState<ActiveTab>('controlo')
 
     const handleGoBack = () => {
         navigate('/home/jobs/open-jobs')
     }
 
-    const toggleDescription = () => {
-        setIsExpanded(!isExpanded)
-    }
-
     const handleControlClick = () => {
         setActiveTab('controlo')
-        navigate(`/home/jobs/controlo/${jobId}/${companyId}`)
     }
 
     const handleMyAdClick = () => {
@@ -33,14 +27,32 @@ export default function useLogicJobDetails() {
         navigate(`/home/jobs/aprovacao-candidatos/${jobId}/${companyId}`)
     }
 
+    const handleEditClick = () => {
+        console.log('Editar anúncio')
+    }
+
+    const handlePauseClick = () => {
+        console.log('Pausar anúncio')
+    }
+
+    const handleDeleteClick = () => {
+        console.log('Excluir anúncio')
+    }
+
+    const handleToggleActive = (checked: boolean) => {
+        console.log('Toggle ativo:', checked)
+    }
+
     return {
         data,
-        isExpanded,
         activeTab,
         handleGoBack,
-        toggleDescription,
         handleControlClick,
         handleMyAdClick,
-        handleCandidatesClick
+        handleCandidatesClick,
+        handleEditClick,
+        handlePauseClick,
+        handleDeleteClick,
+        handleToggleActive
     }
 }

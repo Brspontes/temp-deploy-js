@@ -5,6 +5,7 @@ import { WorkerDto } from '../../../../../dtos/candidature.interface'
 
 export interface Candidate {
     id: string
+    candidatureId: string
     name: string
     avatar: string
     profileId?: string
@@ -45,6 +46,7 @@ export interface CandidateApprovalLogic {
 
 const mapWorkerToCandidate = (worker: WorkerDto): Candidate => ({
     id: worker.workerId,
+    candidatureId: worker.candidatureId,
     name: worker.workerName,
     avatar: worker.workerImage || 'https://i.pravatar.cc/150',
     profileId: worker.workerProfileId,
@@ -104,7 +106,12 @@ export const useLogicCandidateApproval = (): CandidateApprovalLogic => {
 
     const approveCandidate = async (candidateId: string) => {
         try {
-            await approveIndividualCandidate(candidateId)
+            const candidate = candidatesPending.find(c => c.id === candidateId)
+            if (candidate?.candidatureId) {
+                await approveCandidatures([candidate.candidatureId])
+            } else {
+                await approveIndividualCandidate(candidateId)
+            }
             setSelectedPending(prev => prev.filter(id => id !== candidateId))
         } catch (error) {
             console.error('Erro ao aprovar candidato:', error)
@@ -139,7 +146,14 @@ export const useLogicCandidateApproval = (): CandidateApprovalLogic => {
 
     const approveBatchCandidates = async (candidateIds: string[]) => {
         try {
-            await approveCandidatures(candidateIds)
+            const candidaturesToApprove = candidatesPending
+                .filter(c => candidateIds.includes(c.id))
+                .map(c => c.candidatureId)
+                .filter(Boolean)
+
+            if (candidaturesToApprove.length > 0) {
+                await approveCandidatures(candidaturesToApprove)
+            }
             setSelectedPending(prev => prev.filter(id => !candidateIds.includes(id)))
         } catch (error) {
             console.error('Erro ao aprovar candidatos em lote:', error)
@@ -158,7 +172,15 @@ export const useLogicCandidateApproval = (): CandidateApprovalLogic => {
 
     const approvePendingBatch = async () => {
         if (selectedPending.length > 0) {
-            await approveBatchCandidates(selectedPending)
+            const candidaturesToApprove = candidatesPending
+                .filter(c => selectedPending.includes(c.id))
+                .map(c => c.candidatureId)
+                .filter(Boolean)
+
+            if (candidaturesToApprove.length > 0) {
+                await approveCandidatures(candidaturesToApprove)
+                setSelectedPending([])
+            }
         }
     }
 

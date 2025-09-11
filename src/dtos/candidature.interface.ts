@@ -1,4 +1,5 @@
 export interface WorkerDto {
+    candidatureId: string
     workerId: string
     workerName: string
     workerProfileId: string

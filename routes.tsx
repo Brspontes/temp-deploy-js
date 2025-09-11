@@ -5,12 +5,14 @@ import Register from './src/pages/register/Register'
 import NewJob from './src/pages/home/tabs/newJob/NewJob'
 import OpenJobs from './src/pages/home/tabs/jobs/openJobs/OpenJobs'
 import JobDetails from './src/pages/jobDetails/jobDetails'
+import JobControl from './src/pages/jobDetails/JobControl'
 import Dashboard from './src/components/Dashboard/Dashboard'
 import { isAuthenticated } from '@/utils/util'
 import ForgotPassword from '@/pages/ForgotPassword/ForgotPassword'
 import EmailVerificationPage from '@/pages/EmailVerification/EmailVerificationPage'
 import CandidateApproval from '@/pages/home/tabs/jobs/CandidateApproval/CandidateApproval'
 import EditProfile from '@/pages/EditProfile/EditProfile'
+import Professionals from '@/pages/Professionals/Professionals'
 
 // eslint-disable-next-line react-refresh/only-export-components
 const ProtectedRoute = ({
@@ -44,7 +46,9 @@ const router = createBrowserRouter([
       { path: 'new-job', element: <NewJob /> },
       { path: 'jobs/open-jobs', element: <OpenJobs /> },
       { path: 'jobs/open-jobs/:jobId/:companyId', element: <JobDetails /> },
+      { path: 'jobs/controlo/:jobId/:companyId', element: <JobControl /> },
       { path: 'jobs/aprovacao-candidatos/:jobId/:companyId', element: <CandidateApproval /> },
+      { path: 'professionals', element: <Professionals /> },
       { path: 'edit-profile', element: <EditProfile /> }, 
     ],
   },

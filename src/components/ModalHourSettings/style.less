@@ -30,25 +30,188 @@
     color: #a7a7a7;
   }
 
-  .ant-table-thead > tr > th {
-    background-color: #f1f1f1;
-    color: #797979;
+  .ant-picker,
+  .ant-input-number,
+  .ant-select {
+    height: 32px !important;
+    border-radius: 6px !important;
+    border: 1px solid #d9d9d9 !important;
+    font-size: 14px !important;
   }
 
-  .ant-table-tbody > tr > td {
-    background-color: #f1f1f1;
-  }
+  .ant-table {
+    table-layout: fixed !important;
+    width: 100% !important;
 
-  .ant-table-tbody > tr:hover > td {
-    background-color: #f1f1f1;
+    .ant-table-thead > tr > th {
+      background-color: #f1f1f1;
+      color: #797979;
+      font-size: 12px;
+      padding: 8px 12px;
+      width: calc((100% - 80px) / 6) !important;
+    }
+
+    .ant-table-tbody > tr > td {
+      background-color: #f1f1f1;
+      padding: 8px 12px;
+      width: calc((100% - 80px) / 6) !important;
+      vertical-align: middle !important;
+    }
+
+    .ant-table-tbody > tr:hover > td {
+      background-color: #f1f1f1;
+    }
+
+    .ant-table-thead > tr > th:last-child,
+    .ant-table-tbody > tr > td:last-child {
+      width: 80px !important;
+      min-width: 80px !important;
+      max-width: 80px !important;
+    }
+
+    .ant-picker,
+    .ant-input-number,
+    .ant-select,
+    .ant-time-picker {
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      height: 32px !important; 
+      box-sizing: border-box !important;
+    }
+
+    .ant-select-selector,
+    .ant-input-number-input,
+    .ant-picker-input > input {
+      width: 100% !important;
+      height: 32px !important;
+    }
+
+    .ant-picker-input {
+      height: 32px !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    .ant-input-number {
+      height: 32px !important;
+      
+      .ant-input-number-input {
+        height: 30px !important;
+        line-height: 30px !important;
+      }
+    }
+
+    .ant-select {
+      height: 32px !important;
+    }
+
+    .ant-table-content {
+      overflow-x: auto;
+    }
   }
 
   .ant-table-footer {
     display: flex;
     background-color: #f1f1f1;
-
     align-items: center;
     justify-content: center;
+  }
+
+  .ant-table-tbody .ant-table-cell {
+    &:nth-child(1), /* Data */
+    &:nth-child(2), /* Horário Início */
+    &:nth-child(3), /* Horário Final */
+    &:nth-child(4), /* Salário */
+    &:nth-child(5), /* Tipo Pagamento */
+    &:nth-child(6) { 
+      width: 160px !important;
+      min-width: 160px !important;
+      max-width: 160px !important;
+      
+      .ant-picker,
+      .ant-input-number,
+      .ant-select {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 32px !important;
+      }
+
+      .ant-picker {
+        .ant-picker-input > input {
+          height: 30px !important;
+          line-height: 30px !important;
+          padding: 0 11px !important;
+        }
+      }
+
+      .ant-input-number {
+        .ant-input-number-input {
+          height: 30px !important;
+          line-height: 30px !important;
+          padding: 0 11px !important;
+        }
+      }
+
+      .ant-select {
+        .ant-select-selector {
+          height: 30px !important;
+          padding: 0 11px !important;
+          display: flex !important;
+          align-items: center !important;
+          border: none !important;
+          border-radius: 5px;
+        }
+
+        .ant-select-selection-item {
+          line-height: 30px !important;
+        }
+
+        .ant-select-selection-placeholder {
+          line-height: 30px !important;
+        }
+
+        .ant-select-arrow {
+          right: 11px !important;
+          top: 8px !important;
+          bottom: auto !important;
+          height: 16px !important;
+          width: 16px !important;
+          margin: 0 !important;
+          transform: none !important;
+          
+          .anticon {
+            font-size: 12px !important;
+            line-height: 16px !important;
+            height: 16px !important;
+            width: 16px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+        }
+
+        &.ant-select-open .ant-select-arrow {
+          top: 8px !important;
+          height: 16px !important;
+          margin: 0 !important;
+          transform: none !important;
+        }
+      }
+    }
+  }
+
+  .ant-table-thead .ant-table-cell {
+    &:nth-child(1), /* Data */
+    &:nth-child(2), /* Horário Início */
+    &:nth-child(3), /* Horário Final */
+    &:nth-child(4), /* Salário */
+    &:nth-child(5), /* Tipo Pagamento */
+    &:nth-child(6) { 
+      width: 160px !important;
+      min-width: 160px !important;
+      max-width: 160px !important;
+    }
   }
 }
 

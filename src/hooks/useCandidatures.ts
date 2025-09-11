@@ -67,9 +67,9 @@ export const useCandidatures = (jobId: string, companyId: string): UseCandidatur
         try {
             await candidatureService.approveCandidatures(companyId, candidatureIds)
 
-            const candidatesToMove = candidatesPending.filter(c => candidatureIds.includes(c.workerId))
+            const candidatesToMove = candidatesPending.filter(c => candidatureIds.includes(c.candidatureId))
 
-            setCandidatesPending(prev => prev.filter(c => !candidatureIds.includes(c.workerId)))
+            setCandidatesPending(prev => prev.filter(c => !candidatureIds.includes(c.candidatureId)))
             setCandidatesApproved(prev => [
                 ...prev,
                 ...candidatesToMove.map(c => ({ ...c, candidatureStatus: 'APPROVED' as const }))

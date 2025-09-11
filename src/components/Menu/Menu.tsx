@@ -5,9 +5,9 @@ import {
   home,
   work,
   search,
-  currency,
-  clients,
-  Notificações,
+  // currency,
+  // clients,
+  // Notificações,
   avatar,
   novoJob,
 } from '../../assets/sidebar-disabled/index'
@@ -56,18 +56,25 @@ const MenuSideBar = () => {
         </Menu.Item>
         <Menu.Item key="closed-work-option">Passados</Menu.Item>
       </Menu.SubMenu>
-      <Menu.Item key="search-option" icon={<img src={search} alt="" />}>
+      {/* <Menu.Item key="search-option" icon={<img src={search} alt="" />}>
         Pesquisar
+      </Menu.Item> */}
+      <Menu.Item 
+        key="professionals-option" 
+        icon={<img src={search} alt="" />}
+        onClick={() => navigate('/home/professionals')}
+      >
+        Profissionais
       </Menu.Item>
-      <Menu.Item key="payment-option" icon={<img src={currency} alt="" />}>
+      {/* <Menu.Item key="payment-option" icon={<img src={currency} alt="" />}>
         Pagamentos
-      </Menu.Item>
-      <Menu.Item key="customer-option" icon={<img src={clients} alt="" />}>
+      </Menu.Item> */}
+      {/* <Menu.Item key="customer-option" icon={<img src={clients} alt="" />}>
         Clientes
-      </Menu.Item>
-      <Menu.Item key="notification-option" icon={<img src={Notificações} alt="" />}>
+      </Menu.Item> */}
+      {/* <Menu.Item key="notification-option" icon={<img src={Notificações} alt="" />}>
         Notificações
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item 
         key="profile-option" 
         icon={<img src={avatar} alt="" />}

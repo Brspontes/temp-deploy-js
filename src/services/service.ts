@@ -101,3 +101,117 @@ export const candidatureService = {
         }
     }
 }
+
+export const profileService = {
+    async getCompanyProfile(companyId: string) {
+        try {
+            const { token } = getCredentials()
+
+            const response = await axios.get(
+                `${baseUrl}/companies/${companyId}/profile`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                }
+            )
+
+            return response.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const errorMessage = error.response?.data?.message ||
+                    `Erro ao buscar dados do perfil: ${error.response?.status}`
+                throw new Error(errorMessage)
+            }
+            throw new Error('Erro inesperado ao buscar dados do perfil')
+        }
+    },
+
+    async uploadProfileImage(file: File): Promise<string> {
+        try {
+            const { token } = getCredentials()
+
+            const formData = new FormData()
+            formData.append('file', file)
+
+            const response = await axios.put(
+                `${baseUrl}/companies/profile/picture`,
+                formData,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            )
+
+            return response.data.profilePicture || response.data.imageUrl || response.data.url || response.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const errorMessage = error.response?.data?.message ||
+                    `Erro ao fazer upload da imagem: ${error.response?.status}`
+                throw new Error(errorMessage)
+            }
+            throw new Error('Erro inesperado ao fazer upload da imagem')
+        }
+    },
+
+    async updateProfile(profileData: {
+        name?: string
+        email?: string
+        phone?: string
+        countryCode?: string
+        instagram?: string
+        facebook?: string
+        linkedin?: string
+        description?: string
+        personalId?: string
+        personalIdValidity?: string
+        nif?: string
+    }) {
+        try {
+            const { token, companyId } = getCredentials()
+
+            const requestBody = {
+                companyProfileInfo: {
+                    idUserLogin: companyId,
+                    ...(profileData.name && { name: profileData.name }),
+                    ...(profileData.countryCode && { countryCode: profileData.countryCode }),
+                    ...(profileData.phone && { phoneNumber: profileData.phone }),
+                    ...(profileData.instagram && { instagramLink: profileData.instagram }),
+                    ...(profileData.facebook && { facebookLink: profileData.facebook }),
+                    ...(profileData.linkedin && { linkedinLink: profileData.linkedin }),
+                    ...(profileData.description && { description: profileData.description }),
+                },
+                companyLegalInformation: {
+                    idUserLogin: companyId,
+                    ...(profileData.personalId && { personalId: profileData.personalId }),
+                    ...(profileData.personalIdValidity && { personalIdValidyt: profileData.personalIdValidity }),
+                    ...(profileData.nif && { nif: profileData.nif }),
+                }
+            }
+
+            const response = await axios.put(
+                `${baseUrl}/companies/profile`,
+                requestBody,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                }
+            )
+
+            return response.data
+        } catch (error) {
+            console.error('Erro ao atualizar perfil:', error)
+            if (axios.isAxiosError(error)) {
+                const errorMessage = error.response?.data?.message ||
+                    `Erro ao atualizar perfil: ${error.response?.status}`
+                throw new Error(errorMessage)
+            }
+            throw new Error('Erro inesperado ao atualizar perfil')
+        }
+    },
+}
