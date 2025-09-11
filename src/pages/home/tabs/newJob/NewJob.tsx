@@ -20,12 +20,7 @@ import { systemMessage } from '@/utils/message'
 import { LuSettings2 } from 'react-icons/lu'
 import dayjs, { Dayjs } from 'dayjs'
 import ModalHourSettings from '@/components/ModalHourSettings/ModalhourSettings'
-import { FormValues } from '@/domain/interfaces/newJob.interface'
-
-interface EventDatesHour {
-  eventStartDateHour: Dayjs
-  eventFinishDateHour: Dayjs
-}
+import { FormValues, EventDatesHour } from '@/domain/interfaces/newJob.interface'
 
 interface NewJobProps {
   mode?: 'create' | 'update'
@@ -110,7 +105,13 @@ const NewJob = ({
 
   const onChangeEventDates: DatePickerProps<Dayjs[]>['onChange'] = (date) => {
     const eventDates: EventDatesHour[] = date.map((d) => {
-      return { eventFinishDateHour: d, eventStartDateHour: d }
+      return { 
+        eventFinishDateHour: d, 
+        eventStartDateHour: d,
+        totalSalary: 0,
+        paymentType: '',
+        currency: 'EUR'
+      }
     })
     setEventDates(eventDates ?? [])
   }
@@ -298,9 +299,9 @@ const NewJob = ({
                       const reader = new FileReader()
 
                       reader.onload = (e) => {
-                        const arrayBuffer = e.target?.result as Buffer
+                        const arrayBuffer = e.target?.result as ArrayBuffer
                         setUploadImage({
-                          image: arrayBuffer,
+                          image: arrayBuffer as unknown as Buffer,
                           imageName: file.name,
                         })
                       }

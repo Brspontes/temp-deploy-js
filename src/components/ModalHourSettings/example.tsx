@@ -1,14 +1,7 @@
-import { useState } from 'react'
-import ModalHourSettings from './ModalhourSettings'
-import dayjs, { Dayjs } from 'dayjs'
-
-interface EventDatesHour {
-  eventStartDateHour: Dayjs
-  eventFinishDateHour: Dayjs
-  totalSalary: number
-  paymentType: string
-  currency: string
-}
+import { useState } from 'react';
+import ModalHourSettings from './ModalhourSettings';
+import dayjs from 'dayjs';
+import { EventDatesHour } from '@/domain/interfaces/newJob.interface';
 
 export function ExampleUsage() {
   const [open, setOpen] = useState(false)

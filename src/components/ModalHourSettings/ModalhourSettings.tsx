@@ -4,14 +4,7 @@ import { Button, DatePicker, Modal, Table, TimePicker, InputNumber, Select } fro
 import { LuPlusCircle } from 'react-icons/lu'
 import dayjs, { Dayjs } from 'dayjs'
 import { useEffect, useState } from 'react'
-
-interface EventDatesHour {
-  eventStartDateHour: Dayjs
-  eventFinishDateHour: Dayjs
-  totalSalary: number
-  paymentType: string
-  currency: string
-}
+import { EventDatesHour } from '@/domain/interfaces/newJob.interface'
 
 interface ModalHourSettingsProps {
   eventDates: EventDatesHour[]

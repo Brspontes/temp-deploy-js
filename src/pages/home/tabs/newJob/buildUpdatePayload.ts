@@ -1,10 +1,5 @@
-import { FormValues } from '@/domain/interfaces/newJob.interface'
+import { FormValues, EventDatesHour } from '@/domain/interfaces/newJob.interface'
 import { getCredentials } from '@/utils/util'
-
-interface EventDatesHour {
-    eventStartDateHour: import('dayjs').Dayjs
-    eventFinishDateHour: import('dayjs').Dayjs
-}
 
 interface UpdateJobPayload {
     jobId: string

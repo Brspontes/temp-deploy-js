@@ -1,9 +1,4 @@
-import { FormValues } from '@/domain/interfaces/newJob.interface'
-
-interface EventDatesHour {
-    eventStartDateHour: import('dayjs').Dayjs
-    eventFinishDateHour: import('dayjs').Dayjs
-}
+import { FormValues, EventDatesHour } from '@/domain/interfaces/newJob.interface'
 
 interface NewJobPayload {
     title: string
@@ -11,6 +6,9 @@ interface NewJobPayload {
     eventDates: Array<{
         eventStartDateHour: string
         eventFinishDateHour: string
+        totalSalary: number
+        paymentType: string
+        currency: string
     }>
     location: string
     region: string
@@ -48,6 +46,9 @@ export const buildJobPayload = (
         eventDates: eventDates.map((date) => ({
             eventStartDateHour: date.eventStartDateHour.toISOString(),
             eventFinishDateHour: date.eventFinishDateHour.toISOString(),
+            totalSalary: date.totalSalary,
+            paymentType: date.paymentType,
+            currency: date.currency,
         })),
         location: form.location,
         region: form.region,

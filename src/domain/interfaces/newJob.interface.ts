@@ -1,8 +1,11 @@
 import { Dayjs } from 'dayjs'
 
-interface EventDatesHour {
+export interface EventDatesHour {
   eventStartDateHour: Dayjs
   eventFinishDateHour: Dayjs
+  totalSalary: number
+  paymentType: string
+  currency: string
 }
 
 export interface FormValues {
