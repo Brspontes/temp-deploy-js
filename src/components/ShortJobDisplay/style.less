@@ -10,9 +10,16 @@
 
   background-color: #ffffff;
 
+  .ant-avatar {
+    flex-shrink: 0;
+    
+    img {
+      object-fit: cover;
+    }
+  }
+
   .card-company-data {
     margin-left: 20px;
-    width: 150px;
 
     .company-data-title {
       font-weight: 500;
@@ -49,13 +56,37 @@
       justify-content: space-between;
       align-items: center;
 
-      .tag-rounded {
-        border-radius: 150px;
+      > div {
+        display: flex;
+        gap: 8px;
+      }
+
+      .ant-tag.tag-rounded {
+        border-radius: 16px !important;
+        border: none !important;
+        font-weight: 500 !important;
+        padding: 4px 12px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        line-height: 1.5 !important;
+      }
+
+      .ant-tag.tag-men {
+        background-color: #6b65de !important;
+        color: #ffffff !important;
+        border-color: #6b65de !important;
+      }
+
+      .ant-tag.tag-women {
+        background-color: #e89de7 !important;
+        color: #ffffff !important;
+        border-color: e89de7 !important;
       }
 
       .icon-color {
-        color: #ffffff;
-        margin-right: 5px;
+        color: #ffffff !important;
+        font-size: 12px !important;
       }
 
       .card-job-employee-created {

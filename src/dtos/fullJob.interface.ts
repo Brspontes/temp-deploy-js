@@ -42,6 +42,7 @@ export interface IFullJobDto {
   companyId: string
   companyName: string
   companyAnnouncimentsQuantity?: number
+  countActiveJobs?: number
   companyLocation: string
   salary: SalaryDto
   totalSalary: SalaryDto
@@ -49,6 +50,9 @@ export interface IFullJobDto {
   currency: string
   eventStartDateHour?: string
   eventFinishDateHour?: string
+  eventStartDate?: string
+  eventFinishDate?: string
+  eventHour?: string
   eventDates?: EventDateDto[]
   location: string
   jobFunction: string

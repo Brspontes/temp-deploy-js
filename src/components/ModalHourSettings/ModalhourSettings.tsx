@@ -119,24 +119,33 @@ export default function ModalHourSettings(props: ModalHourSettingsProps) {
       title: 'Salário Total',
       dataIndex: 'totalSalary',
       render: (_: any, record: any) => (
-        <InputNumber
-          min={0}
-          precision={2}
-          placeholder="0.00"
-          value={props.eventDates[Number(record.key)]?.totalSalary}
-          onChange={(value) => {
-            const index = Number(record.key)
-            const newValue = [...props.eventDates]
-            
-            if (newValue[index]) {
-              newValue[index] = {
-                ...newValue[index],
-                totalSalary: value || 0,
+          <InputNumber
+            min={0}
+            precision={2}
+            placeholder="0.00"
+            value={props.eventDates[Number(record.key)]?.totalSalary}
+            formatter={(value) => {
+              const currency = props.eventDates[Number(record.key)]?.currency
+              if (currency === 'EUR') {
+                if (value !== undefined && value !== null && Number(value) % 1 === 0) {
+                  return String(Number(value).toFixed(0))
+                }
+                return value !== undefined && value !== null ? String(value) : ''
               }
-              props.setState(newValue)
-            }
-          }}
-        />
+              return value !== undefined && value !== null ? String(value) : ''
+            }}
+            onChange={(value) => {
+              const index = Number(record.key)
+              const newValue = [...props.eventDates]
+              if (newValue[index]) {
+                newValue[index] = {
+                  ...newValue[index],
+                  totalSalary: value || 0,
+                }
+                props.setState(newValue)
+              }
+            }}
+          />
       ),
     },
     {
@@ -186,10 +195,7 @@ export default function ModalHourSettings(props: ModalHourSettingsProps) {
             }
           }}
           options={[
-            { value: 'EUR', label: 'EUR (€)' },
-            { value: 'USD', label: 'USD ($)' },
-            { value: 'BRL', label: 'BRL (R$)' },
-            { value: 'GBP', label: 'GBP (£)' },
+            { value: 'EUR', label: 'EUR (€)' }
           ]}
         />
       ),

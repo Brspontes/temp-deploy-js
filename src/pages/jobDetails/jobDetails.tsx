@@ -80,15 +80,14 @@ function JobDetails() {
                 <Space size="large" className="banner-details">
                   <Space size="small">
                     <CalendarOutlined className="banner-icon" />
-                    <Text>{data?.eventDates?.[0]?.startDate ? new Date(data.eventDates[0].startDate).toLocaleDateString() : 'Data não informada'}</Text>
+                    <Text>
+                      {data?.eventStartDate ? data.eventStartDate : 'Data não informada'}
+                    </Text>
                   </Space>
                   <Space size="small">
                     <ClockCircleOutlined className="banner-icon" />
                     <Text>
-                      {data?.eventDates?.[0]?.startDate && data?.eventDates?.[0]?.finishDate 
-                        ? `${new Date(data.eventDates[0].startDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(data.eventDates[0].finishDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
-                        : 'Horário não informado'
-                      }
+                      {data?.eventHour ? data.eventHour : 'Horário não informado'}
                     </Text>
                   </Space>
                   <Space size="small">
@@ -156,13 +155,13 @@ function JobDetails() {
                 <Flex align="center" gap="small">
                   <EnvironmentOutlined style={{ color: '#dc3545', fontSize: '12px' }} />
                   <Text type="secondary" style={{ fontSize: '14px' }}>
-                    {data?.companyLocation || 'Localização não informada'}
+                    {data?.location || data?.companyLocation || 'Localização não informada'}
                   </Text>
                 </Flex>
                 <Flex align="center" gap="small">
                   <StarOutlined style={{ color: '#ffc107', fontSize: '12px' }} />
                   <Text type="secondary" style={{ fontSize: '14px' }}>
-                    {data?.companyAnnouncimentsQuantity || 0} anúncios ativos
+                {data?.countActiveJobs || 0} anúncios ativos
                   </Text>
                 </Flex>
               </Flex>

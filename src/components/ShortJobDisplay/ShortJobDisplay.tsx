@@ -37,8 +37,12 @@ function ShortjobDisplay(props: Readonly<ShortjobDisplayProps>) {
         }
       }}
     >
-      {props.image?.imagePath ? (
-        <Avatar size={53} src={props.image.imagePath} />
+      {props.image?.imagePath && props.image.imagePath.trim() !== '' ? (
+        <Avatar 
+          size={53} 
+          src={props.image.imagePath}
+          alt={props.company}
+        />
       ) : (
         <Avatar size={53} icon={<UserOutlined />} />
       )}
@@ -54,19 +58,17 @@ function ShortjobDisplay(props: Readonly<ShortjobDisplayProps>) {
         </div>
         <div className="card-job-employee">
           <div>
-            {props?.mens && (
+            {props.mens !== undefined && props.mens !== null && props.mens > 0 && (
               <Tag
-                color="#6B65DE"
-                className="tag-rounded"
+                className="tag-rounded tag-men"
                 icon={<FaUser className="icon-color" />}
               >
                 {props.mens}
               </Tag>
             )}
-            {props?.womans && (
+            {props.womans !== undefined && props.womans !== null && props.womans > 0 && (
               <Tag
-                color="#E89DE7"
-                className="tag-rounded"
+                className="tag-rounded tag-women"
                 icon={<FaUser className="icon-color" />}
               >
                 {props.womans}

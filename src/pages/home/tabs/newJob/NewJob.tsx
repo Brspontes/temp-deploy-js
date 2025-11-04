@@ -25,11 +25,13 @@ import { FormValues, EventDatesHour } from '@/domain/interfaces/newJob.interface
 interface NewJobProps {
   mode?: 'create' | 'update'
   initialValues?: Partial<FormValues>
+  avatarUrl?: string
 }
 
 const NewJob = ({ 
   mode = 'create', 
-  initialValues 
+  initialValues,
+  avatarUrl
 }: NewJobProps = {}) => {
   const { mutate: createJob, isSuccess: isCreateSuccess, isError: isCreateError, isPending: isCreatePending } = usePostJob()
   const { mutate: updateJob, isSuccess: isUpdateSuccess, isError: isUpdateError, isPending: isUpdatePending } = useUpdateJob()
@@ -38,9 +40,22 @@ const NewJob = ({
   const [eventDates, setEventDates] = useState<EventDatesHour[]>([])
   const [datePickerValue, setDatePickerValue] = useState<Dayjs[]>([])
   const [uploadImage, setUploadImage] = useState<{
-    image: Buffer
+    image: File | null
     imageName: string
   } | null>(null)
+  const handleRemoveImage = () => {
+    setUploadImage(null)
+    form.setFieldsValue({ uploadedImage: undefined })
+  }
+  
+  const handleImageUpload = (file: File) => {
+    setUploadImage({
+      image: file,
+      imageName: file.name,
+    })
+    form.setFieldsValue({ uploadedImage: file.name })
+    return false
+  }
 
   const isSuccess = isCreateSuccess || isUpdateSuccess
   const isError = isCreateError || isUpdateError
@@ -67,10 +82,12 @@ const NewJob = ({
   }
 
   useEffect(() => {
-    if (isSuccess)
+    if (isSuccess) {
       toast(systemMessage.createNewJob.successCreatingJob, toastSucessConfig)
-    if (isError)
+    }
+    if (isError) {
       toast(systemMessage.createNewJob.errorCreatingJob, toastErrorConfig)
+    }
   }, [isSuccess, isError])
 
   useEffect(() => {
@@ -86,7 +103,11 @@ const NewJob = ({
     }
   }, [initialValues, mode, form])
   const onFinish = (values: FormValues) => {
-    const jobPayload = buildJobPayload(values, eventDates)
+    const jobPayload = {
+      ...buildJobPayload(values, eventDates),
+      isActive: true,
+      isFinished: false,
+    }
 
     if (mode === 'create') {
       createJob({
@@ -128,8 +149,49 @@ const NewJob = ({
     setIsModalOpen(false)
   }
 
-  console.log('date picker value', datePickerValue)
 
+  let uploadFieldContent: React.ReactNode
+  if (uploadImage) {
+    uploadFieldContent = (
+      <div className="upload-field" style={{ minHeight: '52px', height: 'auto', padding: '19px 20px', boxSizing: 'border-box', width: '100%' }}>
+        <span style={{ flex: 1, color: '#555', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {uploadImage.imageName}
+        </span>
+        <Button type="text" danger onClick={handleRemoveImage} style={{ padding: '0 8px', fontSize: 16 }}>
+          Fechar
+        </Button>
+      </div>
+    )
+  } else if (avatarUrl) {
+    uploadFieldContent = (
+      <div className="upload-field" style={{ minHeight: '52px', height: 'auto', padding: '10px 20px', boxSizing: 'border-box', width: '100%', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <img src={avatarUrl} alt="Avatar" style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover', marginRight: 12 }} />
+        <span style={{ flex: 1, color: '#aaa' }}>Foto do avatar</span>
+        <Upload
+          maxCount={1}
+          className="upload-container"
+          beforeUpload={handleImageUpload}
+          showUploadList={false}
+        >
+          <Button type="link" style={{ padding: 0, fontSize: 16 }}>Trocar imagem</Button>
+        </Upload>
+      </div>
+    )
+  } else {
+    uploadFieldContent = (
+      <Upload
+        maxCount={1}
+        className="upload-container"
+        beforeUpload={handleImageUpload}
+        showUploadList={false}
+      >
+        <div className="upload-field" style={{ minHeight: '52px', height: 'auto', padding: '19px 20px', boxSizing: 'border-box', width: '100%', cursor: 'pointer' }}>
+          <span style={{ flex: 1, color: '#aaa' }}>Clica para anexar</span>
+          <UploadOutlined style={{ color: '#aaa' }} />
+        </div>
+      </Upload>
+    )
+  }
   return (
     <>
       <ModalHourSettings
@@ -183,7 +245,6 @@ const NewJob = ({
                 >
                   <Input className={'input-field'} />
                 </Form.Item>
-
                 <Form.Item
                   className="form-group-item"
                   name="client"
@@ -198,49 +259,60 @@ const NewJob = ({
                   <Input className={'input-field'} />
                 </Form.Item>
               </div>
-              <div className="row">
-                <Form.Item
-                  className="form-group-item"
-                  name="eventDate"
-                  label="Intervalo de Data"
-                  style={{
-                    display: 'inline-block',
-                    width: '50%',
-                  }}
-                  rules={defaultRulesRequired}
-                  hasFeedback
-                  wrapperCol={{
-                    xs: {
-                      span: '50%',
-                    },
-                  }}
-                  labelCol={{ span: '100%' }}
+              <div className="row" style={{ marginBottom: 24 }}>
+                <div
+                  className="div-interval-date-modal"
+                  style={{ display: 'inline-block', width: '49%' }}
                 >
+                  <p className="div-interval-date-label" style={{ marginTop: 0 }}>Intervalo de Data</p>
                   <DatePicker
                     multiple
-                    maxTagCount={'responsive'}
+                    maxTagCount={1}
                     className={'input-field'}
                     format={'DD/MM/YYYY'}
-                    style={{ width: '98%' }}
+                    style={{ width: '100%', height: 56, minHeight: 56, paddingTop: 13, paddingBottom: 13, boxSizing: 'border-box', borderRadius: 16 }}
                     onChange={onChangeEventDates}
-                    value={[
-                      dayjs('2000-01-01'),
-                      dayjs('2000-01-22'),
-                      dayjs('2000-01-05'),
-                    ]}
+                    value={datePickerValue}
+                    disabledDate={(current) => current && current < dayjs().startOf('day')}
                   />
-                </Form.Item>
-                <div className="div-open-hour-modal">
+                </div>
+                <div
+                  className="div-open-hour-modal"
+                  style={{ display: 'inline-block', width: '49%' }}
+                >
                   <p className="div-open-hour-label">Horário</p>
                   <Button
-                    className="btn-config-hours"
+                    className="btn-config-hours input-field"
+                    style={{
+                      width: '100%',
+                      height: 56,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '0 20px',
+                      borderRadius: 16,
+                      boxSizing: 'border-box',
+                      background: '#fff',
+                      border: '1px solid #e5e5e5',
+                      fontSize: 16,
+                      fontFamily: 'inherit',
+                      color: '#555',
+                      fontWeight: 400,
+                      outline: 'none',
+                      boxShadow: 'none',
+                      lineHeight: 'normal',
+                    }}
                     onClick={showModal}
-                    disabled={eventDates && eventDates.length === 0}
+                    disabled={eventDates?.length === 0}
                   >
-                    <div>
-                      <p>Configurar horários aqui</p>
+                    <span style={{ flex: 1, textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {eventDates?.length > 0
+                        ? `Horários configurados (${eventDates.length})`
+                        : 'Configurar horários aqui'}
+                    </span>
+                    <span style={{ display: 'flex', alignItems: 'center', marginLeft: 8 }}>
                       <LuSettings2 color="gray" />
-                    </div>
+                    </span>
                   </Button>
                 </div>
               </div>
@@ -292,45 +364,10 @@ const NewJob = ({
                   rules={defaultRulesRequired}
                   wrapperCol={{ span: '100%' }}
                 >
-                  <Upload
-                    maxCount={1}
-                    className="upload-container"
-                    beforeUpload={(file) => {
-                      const reader = new FileReader()
-
-                      reader.onload = (e) => {
-                        const arrayBuffer = e.target?.result as ArrayBuffer
-                        setUploadImage({
-                          image: arrayBuffer as unknown as Buffer,
-                          imageName: file.name,
-                        })
-                      }
-                      reader.readAsArrayBuffer(file)
-                      return false
-                    }}
-                    showUploadList={false}
-                  >
-                    <Button className="upload-field">
-                      <span>Clica para anexar</span>
-                      <UploadOutlined />
-                    </Button>
-                  </Upload>
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    {uploadFieldContent}
+                  </div>
                 </Form.Item>
-                {/* <Form.Item
-                  className="form-group-item   "
-                  name="publishTo"
-                  label="Publicar para"
-                  style={{
-                    display: 'inline-block',
-                    width: '49%',
-                  }}
-                  rules={defaultRulesRequired}
-                  wrapperCol={{ span: '100%' }}
-                >
-                  <Select>
-                    <Select.Option value="Todos">Todos</Select.Option>
-                  </Select>
-                </Form.Item> */}
               </div>
             </div>
             <div className="detalhes">
